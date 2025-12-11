@@ -1,22 +1,24 @@
 "use client"
-import React from 'react'
-import { fetchWeatherData } from '../actions'
 
-const handleSearch = async (formData: FormData) => {
-    const location = formData.get("location") as string;
-    const response = await fetchWeatherData(location);
-    if (response?.data) {
-        console.log(response.data);
-    } else {
-        console.log("No data found");
+import { useState } from 'react'
+
+export default function SearchBar({ onSubmitLocation }: { onSubmitLocation: (loc: string) => void; }) {
+    const [input, setInput] = useState("");
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault(); // Prevent page reload
+        if (!input.trim()) return; // Ignore empty input
+        onSubmitLocation(input);
+        setInput(""); // Clear input after submission
+        console.log("Searching for: ", input);
     }
-}
 
-const SearchBar = () => {
-  return (
-    <div>SearchBar
-        <form action={handleSearch}>
-            <input type="text" placeholder="Enter city or postcode" name="location" 
+    return (
+    <div>
+        <form onSubmit={handleSearch}
+        className="flex mb-8 w-full max-w-md">
+            <input value={input} onChange={(e) => setInput(e.target.value)}
+            type="text" placeholder="Enter city or postcode" name="location" 
             className="border border-gray-300 rounded-l-md p-2"/>
             <button type="submit"
             className="border border-gray-300 rounded-r-md p-2"
@@ -25,5 +27,3 @@ const SearchBar = () => {
     </div>
   )
 }
-
-export default SearchBar
