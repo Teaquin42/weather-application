@@ -1,4 +1,5 @@
 # weather-application
+
 One page, web based weather application using React and Next.js.
 
 ## FILES STRUCTURE
@@ -6,8 +7,8 @@ One page, web based weather application using React and Next.js.
 - weather-app/
   - app/
     - api/
-        - forecast/ (api route for 5 day forecast)
-        - weather/ (api route for current weather)
+      - forecast/ (api route for 5 day forecast)
+      - weather/ (api route for current weather)
     - components/ (Page components)
     - lib/ (utility files)
     - types/ (Interface definitions)
@@ -35,8 +36,9 @@ npm install
 ```
 
 3. Don't forget to set up your `.env` file in `/weather-app` directory with this information below:
+
 - `WEATHER_API_KEY=` your API key
-   
+
 4. Run the app
 
 ```
